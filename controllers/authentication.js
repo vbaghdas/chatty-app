@@ -8,9 +8,9 @@ function tokenForUser(user){
 }
 
 exports.signup = (req, res, next) => {
-    const { email, password, firstName, lastName, userName, color } = req.body
+    const { email, password, firstName, lastName, username, color } = req.body
 
-    if(!email || !password || !firstName, !lastName, !userName, !color){
+    if(!email || !password || !firstName, !lastName, !username, !color){
         const output = {
             errors: [],
             suggestions: {}
@@ -27,9 +27,9 @@ exports.signup = (req, res, next) => {
         if(!lastName){
             output.errors.push('No last name found');
         }
-        if(!userName){
+        if(!username){
             outut.errors.push('No user name found');
-            output.suggestions.userName = firstName && lastName ? firstName + ' ' + lastName : 'Fluffy Bunny';
+            output.suggestions.username = firstName && lastName ? firstName + ' ' + lastName : 'Fluffy Bunny';
         }
         if(!color){
             output.errors.push('No color found');
@@ -42,19 +42,29 @@ exports.signup = (req, res, next) => {
         if(err) return next(err);
 
         if(existingUser){
-            return res.status(422).send({ errors: ['Email akready in use'] })
+            return res.status(422).send({ errors: ['Email already in use'] })
         }
         const newUser = new User({
-            email, password, firstName, lastName, userName, color
+            email, password, firstName, lastName, username, color
         });
         newUser.save((err) => {
             if(err) return next(err);
 
-            res.json({ token: tokenForUser(newUser) });
+            const sendObj = {
+                token: tokenForUser(newUser),
+                username, color
+            }
+
+            res.json(sendObj);
         })  
  });
 }
 
 exports.signin = (req, res, next) => {
-    res.send({ token: tokenForUser(req.user) })
+    res.send(
+        { 
+            token: tokenForUser(req.user),
+            username: req.user.username,
+            color: req.user.color
+        })
 }
