@@ -1,6 +1,7 @@
 export default {
     SIGNUP: 'signup',
     LOGIN: 'login',
-    LOGOUT: 'logout'
+    LOGOUT: 'logout',
+    GET_ROOM_LIST: 'get_room_list'
 };
 
