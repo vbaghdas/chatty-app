@@ -8,7 +8,7 @@ const Nav = props => {
     function updateNav(){
         if(props.user){
             return [
-                <li key="0"><Link to="chat-lobby">Chat Lobby</Link></li>,
+                <li key="0"><Link to="/chat-lobby">Chat Lobby</Link></li>,
                 <li key="1"><Link to="/" onClick={props.logout}>Log Out</Link></li>
             ]
         }
@@ -24,7 +24,7 @@ const Nav = props => {
         const userStyle = {
                 color: props.user.color
             }
-            greeting = <span style={{paddingLeft: '10px' }}>Hello, <span style={userStyle}>{props.user.username}</span></span>
+            greeting = <span style={{paddingLeft: '10px'}}>Hello, <span style={userStyle}>{props.user.username}</span></span>
     }
 
     return (
