@@ -6,22 +6,10 @@ import { getRoomList } from '../actions';
 class Chat extends Component {
     constructor(props){
         super(props);
-
-        // this.socket = openSocket('http://localhost:3500');
-
-        // this.sendMessage = this.sendMessage.bind(this);
     }
 
     componentDidMount(){
-            // this.socket.on('chat message', msg => {
-            //     console.log('Message Received:', msg)
-            // });
-
             this.props.getRoomList();
-    }
-
-    sendMessage(){
-        this.socket.emit('chat message', 'Hello hard coded');
     }
 
     render(){
@@ -42,7 +30,6 @@ class Chat extends Component {
                 <ul className="collection">
                     {roomList}
                 </ul>
-                {/* <button onClick={this.sendMessage} className="btn">Send Message</button> */}
             </div>
         )
     }

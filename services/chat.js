@@ -3,7 +3,7 @@ const io = require ('socket.io')();
 io.on('connection', client => {
     client.on('room', room => {
         client.join(room);
-        io.sockets.in(room).emit('message', 'Welcome to the room');
+        io.sockets.in(room).emit('message');
 
         client.on('message', msg => {
             io.in(room).emit('message', msg);

@@ -4,7 +4,6 @@ exports.listRooms = function(req, res){
     const query = ChatRoom.find({}).select('name');
 
     query.exec(function (err, rooms){
-        
         console.log('Rooms', rooms);
         res.send(rooms);
     })

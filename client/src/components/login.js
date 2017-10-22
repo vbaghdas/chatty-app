@@ -5,15 +5,21 @@ import { renderInput } from '../helpers';
 import { login } from '../actions';
 
 class Login extends Component {
-    
+
+    constructor(props){
+        super(props);
+    }
+
+    // componentWillReceiveProps(){
+    //     this.props.history.push("/chat-lobby");
+    // }
+
     handleLogin(vals){
             console.log('Sign In Vals:', vals);
-
             this.props.login(vals);
     }
 
     render(){
-
         const { handleSubmit } =  this.props;
         return (
             <form onSubmit={handleSubmit((vals) => this.handleLogin(vals))}>
