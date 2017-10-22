@@ -32,6 +32,7 @@ export function login(userInfo){
 export function jwtLogin(){
     return dispatch => {
         axios.get('/auth/get-user', {headers: { authorization: localStorage.getItem('token') }}).then(resp => {
+
             dispatch({
                 type: types.LOGIN,
                 payload: resp.data
